@@ -22,16 +22,16 @@ public class UserDAOImplTest extends DBUnitTestCase {
     @Test
     public void testCreate() throws Exception {
         User user = createUser()
-                .withFirstName("F")
-                .withLastName("L").build();
+                .withLogin("F")
+                .withPassword("L").build();
 
         userDAO.save(user);
 
         Optional<User> userFromDB = userDAO.getById(user.getUserId());
         assertTrue(userFromDB.isPresent());
         assertEquals(user.getUserId(), userFromDB.get().getUserId());
-        assertEquals(user.getFirstName(), userFromDB.get().getFirstName());
-        assertEquals(user.getLastName(), userFromDB.get().getLastName());
+        assertEquals(user.getLogin(), userFromDB.get().getLogin());
+        assertEquals(user.getPassword(), userFromDB.get().getPassword());
     }
 
 }

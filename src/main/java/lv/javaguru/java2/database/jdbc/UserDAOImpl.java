@@ -20,8 +20,8 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
             connection = getConnection();
             PreparedStatement preparedStatement =
                     connection.prepareStatement("insert into USERS values (default, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, user.getFirstName());
-            preparedStatement.setString(2, user.getLastName());
+            preparedStatement.setString(1, user.getLogin());
+            preparedStatement.setString(2, user.getPassword());
 
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
@@ -52,8 +52,8 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
             if (resultSet.next()) {
                 user = new User();
                 user.setUserId(resultSet.getLong("UserID"));
-                user.setFirstName(resultSet.getString("FirstName"));
-                user.setLastName(resultSet.getString("LastName"));
+                user.setLogin(resultSet.getString("FirstName"));
+                user.setPassword(resultSet.getString("LastName"));
             }
             return Optional.ofNullable(user);
         } catch (Throwable e) {
@@ -76,8 +76,8 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
             while (resultSet.next()) {
                 User user = new User();
                 user.setUserId(resultSet.getLong("UserID"));
-                user.setFirstName(resultSet.getString("FirstName"));
-                user.setLastName(resultSet.getString("LastName"));
+                user.setLogin(resultSet.getString("FirstName"));
+                user.setPassword(resultSet.getString("LastName"));
                 users.add(user);
             }
         } catch (Throwable e) {
@@ -118,8 +118,8 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
             PreparedStatement preparedStatement = connection
                     .prepareStatement("update USERS set FirstName = ?, LastName = ? " +
                             "where UserID = ?");
-            preparedStatement.setString(1, user.getFirstName());
-            preparedStatement.setString(2, user.getLastName());
+            preparedStatement.setString(1, user.getLogin());
+            preparedStatement.setString(2, user.getPassword());
             preparedStatement.setLong(3, user.getUserId());
             preparedStatement.executeUpdate();
         } catch (Throwable e) {

@@ -13,18 +13,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void edit(Long userId,
-                     String newFirstName,
-                     String newLastName) {
+                     String login,
+                     String password) {
         Optional<User> userOpt = userDAO.getById(userId);
         if (!userOpt.isPresent()) {
             throw new IllegalArgumentException("User not found by id = " + userId);
         }
 
-        userValidator.validate(newFirstName, newLastName);
+        userValidator.validate(login, password);
 
         User user = userOpt.get();
-        user.setFirstName(newFirstName);
-        user.setLastName(newLastName);
+        user.setLogin(login);
+        user.setPassword(password);
         userDAO.update(user);
     }
 

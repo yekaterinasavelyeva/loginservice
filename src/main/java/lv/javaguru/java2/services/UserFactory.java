@@ -4,6 +4,6 @@ import lv.javaguru.java2.domain.User;
 
 public interface UserFactory {
 
-    User create(String firstName, String lastName);
+    User create(String login, String password);
 
 }

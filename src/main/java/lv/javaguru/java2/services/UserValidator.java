@@ -2,6 +2,6 @@ package lv.javaguru.java2.services;
 
 public interface UserValidator {
 
-    void validate(String firstName, String lastName);
+    void validate(String login, String password);
 
 }

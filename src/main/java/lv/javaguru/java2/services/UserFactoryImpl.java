@@ -13,12 +13,12 @@ public class UserFactoryImpl implements UserFactory {
 
 
     @Override
-    public User create(String firstName, String lastName) {
-        userValidator.validate(firstName, lastName);
+    public User create(String login, String password) {
+        userValidator.validate(login, password);
 
         User user = createUser()
-                .withFirstName(firstName)
-                .withLastName(lastName).build();
+                .withLogin(login)
+                .withPassword(password).build();
 
         return userDAO.save(user);
     }
