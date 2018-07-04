@@ -1,4 +1,6 @@
-package lv.javaguru.java2.services;
+package lv.javaguru.java2.services.validators.impls;
+
+import lv.javaguru.java2.services.validators.UserValidator;
 
 public class UserValidatorImpl implements UserValidator {
 
