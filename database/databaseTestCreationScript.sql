@@ -2,22 +2,23 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-CREATE SCHEMA IF NOT EXISTS `login_project` DEFAULT CHARACTER SET utf8 ;
-USE `login_project` ;
+CREATE SCHEMA IF NOT EXISTS `login_project_test` DEFAULT CHARACTER SET utf8 ;
+USE `login_project_test` ;
 
--- -----------------------------------------------------
--- Table `login_project`.`users`
--- -----------------------------------------------------
+-- -----------------------------------------
+-- Table `login_project_test`.`users`
+-- -----------------------------------------
+
 DROP TABLE IF EXISTS `users` ;
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `UserID` INT(11) NOT NULL AUTO_INCREMENT,
-  `Login` CHAR(32) NOT NULL,
-  `Password` CHAR(32) NOT NULL,
-  PRIMARY KEY (`UserID`)
+    `UserID` INT(11) NOT NULL AUTO_INCREMENT,
+    `Login` CHAR(32) NOT NULL,
+    `Password` CHAR(32) NOT NULL,
+PRIMARY KEY (`UserID`)
 )
-ENGINE = InnoDB
-AUTO_INCREMENT = 1;
+ENGINE=InnoDB
+AUTO_INCREMENT=1;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
