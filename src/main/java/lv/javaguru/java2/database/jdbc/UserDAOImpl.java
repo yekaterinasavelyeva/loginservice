@@ -3,6 +3,7 @@ package lv.javaguru.java2.database.jdbc;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.User;
+import lv.javaguru.java2.domain.UserState;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,9 +20,12 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("insert into USERS values (default, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+                    connection.prepareStatement("insert into USERS values (default, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, user.getLogin());
             preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getFirstName());
+            preparedStatement.setString(4, user.getLastName());
+            preparedStatement.setString(5, user.getState().name());
 
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
@@ -52,8 +56,11 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
             if (resultSet.next()) {
                 user = new User();
                 user.setUserId(resultSet.getLong("UserID"));
-                user.setLogin(resultSet.getString("FirstName"));
-                user.setPassword(resultSet.getString("LastName"));
+                user.setLogin(resultSet.getString("Login"));
+                user.setPassword(resultSet.getString("Password"));
+                user.setFirstName(resultSet.getString("FirstName"));
+                user.setLastName(resultSet.getString("LastName"));
+                user.setState(UserState.valueOf(resultSet.getString("Status")));
             }
             return Optional.ofNullable(user);
         } catch (Throwable e) {
@@ -76,8 +83,11 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
             while (resultSet.next()) {
                 User user = new User();
                 user.setUserId(resultSet.getLong("UserID"));
-                user.setLogin(resultSet.getString("FirstName"));
-                user.setPassword(resultSet.getString("LastName"));
+                user.setLogin(resultSet.getString("Login"));
+                user.setPassword(resultSet.getString("Password"));
+                user.setFirstName(resultSet.getString("FirstName"));
+                user.setLastName(resultSet.getString("LastName"));
+                user.setState(UserState.valueOf(resultSet.getString("Status")));
                 users.add(user);
             }
         } catch (Throwable e) {
@@ -116,11 +126,14 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("update USERS set FirstName = ?, LastName = ? " +
+                    .prepareStatement("update USERS set Login = ?, Password = ?, FirstName = ?, LastName = ?, Status = ? " +
                             "where UserID = ?");
             preparedStatement.setString(1, user.getLogin());
             preparedStatement.setString(2, user.getPassword());
-            preparedStatement.setLong(3, user.getUserId());
+            preparedStatement.setString(3, user.getFirstName());
+            preparedStatement.setString(4, user.getLastName());
+            preparedStatement.setString(5, user.getState().name());
+            preparedStatement.setLong(6, user.getUserId());
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
             System.out.println("Exception while execute UserDAOImpl.update()");

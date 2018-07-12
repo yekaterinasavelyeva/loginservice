@@ -4,6 +4,9 @@ public class UserBuilder {
 
     private String login;
     private String password;
+    private String firstName;
+    private String lastName;
+    private UserState state;
 
 
     private UserBuilder() {}
@@ -16,6 +19,9 @@ public class UserBuilder {
         User user = new User();
         user.setLogin(login);
         user.setPassword(password);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setState(state);
         return user;
     }
 
@@ -26,6 +32,21 @@ public class UserBuilder {
 
     public UserBuilder withPassword(String password) {
         this.password = password;
+        return this;
+    }
+
+    public UserBuilder withFirstName(String firstName){
+        this.firstName = firstName;
+        return this;
+    }
+
+    public UserBuilder withLastName(String lastName){
+        this.lastName = lastName;
+        return this;
+    }
+
+    public UserBuilder withState(UserState state){
+        this.state = state;
         return this;
     }
 
