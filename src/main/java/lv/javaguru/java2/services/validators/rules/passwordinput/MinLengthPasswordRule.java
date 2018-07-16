@@ -1,8 +1,8 @@
-package lv.javaguru.java2.services.user.rules.datainput;
+package lv.javaguru.java2.services.validators.rules.passwordinput;
 
-import lv.javaguru.java2.services.user.rules.DataInputRule;
+import lv.javaguru.java2.services.validators.rules.DataInputRule;
 
-public class MinLengthRule implements DataInputRule {
+public class MinLengthPasswordRule implements DataInputRule {
 
     @Override
     public boolean satisfiesCondition(String input) {

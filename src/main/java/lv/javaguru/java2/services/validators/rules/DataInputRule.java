@@ -1,4 +1,4 @@
-package lv.javaguru.java2.services.user.rules;
+package lv.javaguru.java2.services.validators.rules;
 
 import lv.javaguru.java2.domain.User;
 
