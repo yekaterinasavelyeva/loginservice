@@ -1,14 +1,15 @@
 package lv.javaguru.java2.services.validators.impls;
 
+import lv.javaguru.java2.database.UserDAO;
+import lv.javaguru.java2.database.jdbc.UserDAOImpl;
 import lv.javaguru.java2.domain.UserState;
 import lv.javaguru.java2.services.exceptions.UserEditException;
-import lv.javaguru.java2.services.exceptions.UserPropertyException;
-import lv.javaguru.java2.services.validators.UserPropertiesValidator;
 import lv.javaguru.java2.services.validators.UserEditValidator;
-import lv.javaguru.java2.services.validators.rules.DataInputValidator;
+import lv.javaguru.java2.services.validators.DataInputValidator;
 import lv.javaguru.java2.services.validators.rules.passwordinput.EmptyOrNullPasswordRule;
 import lv.javaguru.java2.services.validators.rules.passwordinput.LetterAndNumberPasswordRule;
 import lv.javaguru.java2.services.validators.rules.passwordinput.MinLengthPasswordRule;
+import lv.javaguru.java2.services.validators.rules.passwordinput.PasswordRule;
 
 /**
  * Created by Yekaterina Savelyeva
@@ -17,30 +18,28 @@ import lv.javaguru.java2.services.validators.rules.passwordinput.MinLengthPasswo
 
 public class UserEditValidatorImpl implements UserEditValidator {
 
-    DataInputValidator passwordValidator =
-            new DataInputValidatorImpl(new EmptyOrNullPasswordRule(),
+    private UserDAO userDAO = new UserDAOImpl();
+
+    private DataInputValidator passwordInputValidator =
+            new DataInputValidatorImpl(userDAO, new EmptyOrNullPasswordRule(),
             new LetterAndNumberPasswordRule(),
-            new MinLengthPasswordRule());
+            new MinLengthPasswordRule(),
+                    new PasswordRule());
 
     private StringBuilder validationErrors = new StringBuilder();
 
     @Override
     public void validate(Long userId, String password, String firstName, String lastName, UserState state) {
-        validateUserId(userId);
-        validatePassword(password);
+        validatePassword(userId, password);
         //validateFirstName(firstName);
         //validateLastName(lastName);
         //validateState(state);
         handleValidationErrors();
     }
 
-    public void validateUserId(Long userId){
-
-    }
-
-    public void validatePassword(String password){
+    public void validatePassword(Long userId, String password){
         try {
-            passwordValidator.validatePassword(password);
+            passwordInputValidator.validateData(userId, password);
         } catch (IllegalArgumentException e) {
             collectMessage(e.getMessage());
         }

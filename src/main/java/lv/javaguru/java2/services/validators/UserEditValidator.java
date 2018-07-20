@@ -9,6 +9,6 @@ import lv.javaguru.java2.domain.UserState;
 
 public interface UserEditValidator {
 
-    public void validate(Long userId, String password, String firstName, String lastName, UserState state);
+    public void validate(Long UserId, String password, String firstName, String lastName, UserState state);
 
 }

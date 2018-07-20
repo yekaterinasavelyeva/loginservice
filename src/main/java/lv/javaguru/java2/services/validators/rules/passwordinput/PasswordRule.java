@@ -3,25 +3,29 @@ package lv.javaguru.java2.services.validators.rules.passwordinput;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.services.validators.rules.DataInputRule;
 
-public class MinLengthPasswordRule implements DataInputRule {
+/**
+ * Created by Yekaterina Savelyeva
+ * on 20.07.2018
+ */
 
+public class PasswordRule implements DataInputRule {
     @Override
     public boolean satisfiesCondition(String input) {
-         return input.length() < 6;
+        return true;
     }
 
     @Override
     public boolean satisfiesCondition(Long userId, String input, UserDAO dao) {
-        return input.length() < 6;
+        return true;
     }
 
     @Override
     public void produceResult(Long userId, String input, UserDAO dao) {
-        throw new IllegalArgumentException("Password must be at least 6 symbols long!");
+        throw new IllegalArgumentException("Password is ok.");
     }
 
     @Override
     public void produceResult(String input) {
-        throw new IllegalArgumentException("Password must be at least 6 symbols long!");
+        throw new IllegalArgumentException("Database is not specified.");
     }
 }

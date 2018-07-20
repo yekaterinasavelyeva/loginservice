@@ -7,6 +7,4 @@ public interface UserPropertiesValidator {
 
     void validate (String login, String password, String firstName, String lastName, UserState state);
 
-    void validatePasword(String password);
-
 }
