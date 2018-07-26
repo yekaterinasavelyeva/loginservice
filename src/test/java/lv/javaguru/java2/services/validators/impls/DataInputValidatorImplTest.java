@@ -75,12 +75,21 @@ public class DataInputValidatorImplTest {
     }
 
     @Test
-    public void shouldThrowConfirmationExceptionWhenPasswordValid(){
+    public void shouldThrowConfirmationExceptionWhenPasswordValid1(){
         validator = new DataInputValidatorImpl(dao, new EmptyOrNullPasswordRule(),
                 new LetterAndNumberPasswordRule(), new MinLengthPasswordRule(), new PasswordRule());
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Database is not specified.");
         validator.validateInput("password1");
+    }
+
+    @Test
+    public void shouldThrowConfirmationExceptionWhenPasswordValid2(){
+        validator = new DataInputValidatorImpl(dao, new EmptyOrNullPasswordRule(),
+                new LetterAndNumberPasswordRule(), new MinLengthPasswordRule(), new PasswordRule());
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Password is ok.");
+        validator.validateData(1l, "password1");
     }
 
 }

@@ -26,6 +26,29 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
+-- -----------------------------------------------------
+-- Table `login_project`.`passwords`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `passwords`;
+
+CREATE TABLE IF NOT EXISTS `passwords` (
+    `UserID` INT(11) NOT NULL AUTO_INCREMENT,
+    `Password` CHAR(32) NOT NULL,
+		`Password2` CHAR(32),
+		`Password3` CHAR(32),
+		PRIMARY KEY (`UserID`),
+		FOREIGN KEY (`UserID`) REFERENCES `users` (`UserID`)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE
+)
+
+   ENGINE = InnoDB
+   AUTO_INCREMENT = 1;
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
 INSERT INTO `users` (UserID, Login, Password, FirstName, LastName, Status)
 VALUES (default, 'jekaterinaj', 'saveljeva12', 'Yekaterina', 'Savelyeva', 'ADMIN');
 
