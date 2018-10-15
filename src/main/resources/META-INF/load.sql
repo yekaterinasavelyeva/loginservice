@@ -1,0 +1,15 @@
+INSERT INTO USERS (USERID, LOGIN, PASSWORD, FIRSTNAME, LASTNAME, STATUS) VALUES (default, 'jekaterinaj', 'saveljeva12', 'Yekaterina', 'Savelyeva', 'ADMIN');
+INSERT INTO USERS (USERID, LOGIN, PASSWORD, FIRSTNAME, LASTNAME, STATUS) VALUES (default, 'viktorv', 'barbashin11', 'Viktor', 'Barbashin', 'ADMIN');
+INSERT INTO USERS (USERID, LOGIN, PASSWORD, FIRSTNAME, LASTNAME, STATUS) VALUES (default, 'annaka', 'kalinina45', 'Anna', 'Kalinina', 'VISITOR');
+INSERT INTO USERS (USERID, LOGIN, PASSWORD, FIRSTNAME, LASTNAME, STATUS) VALUES (default, 'oleglap', 'la98pin', 'Oleg', 'Lapin', 'VISITOR');
+INSERT INTO USERS (USERID, LOGIN, PASSWORD, FIRSTNAME, LASTNAME, STATUS) VALUES (default, 'janisoz', 'o23zo98l', 'Janis', 'Ozolins', 'VISITOR');
+INSERT INTO USERS (USERID, LOGIN, PASSWORD, FIRSTNAME, LASTNAME, STATUS) VALUES (default, 'andisli', 'lie90Pa', 'Andis', 'Liepa', 'VISITOR');
+INSERT INTO USERS (USERID, LOGIN, PASSWORD, FIRSTNAME, LASTNAME, STATUS) VALUES (default, 'rutasruta', 'kalns56Ka', 'Ruta', 'Kalnina', 'VISITOR');
+INSERT INTO USERS (USERID, LOGIN, PASSWORD, FIRSTNAME, LASTNAME, STATUS) VALUES (default, 'julijastar', 'star67star', 'Julija', 'Starodubova', 'VISITOR');
+INSERT INTO USERS (USERID, LOGIN, PASSWORD, FIRSTNAME, LASTNAME, STATUS) VALUES (default, 'jekaterinagala', 'Galinina25', 'Jekaterina', 'Galinina', 'VISITOR');
+INSERT INTO USERS (USERID, LOGIN, PASSWORD, FIRSTNAME, LASTNAME, STATUS) VALUES (default, 'antonanton', 'gri84iB', 'Anton', 'Grib', 'VISITOR');
+INSERT INTO USERS (USERID, LOGIN, PASSWORD, FIRSTNAME, LASTNAME, STATUS) VALUES (default, 'jevgenijza', 'za76iCev', 'Jevgenij', 'Zajcev', 'VISITOR');
+INSERT INTO USERS (USERID, LOGIN, PASSWORD, FIRSTNAME, LASTNAME, STATUS) VALUES (default, 'aleksejfed', 'fedotov76', 'Aleksej', 'Fedotov', 'VISITOR');
+INSERT INTO USERS (USERID, LOGIN, PASSWORD, FIRSTNAME, LASTNAME, STATUS) VALUES (default, 'jelizaveta', 'saveljeva56', 'Jelizaveta', 'Saveljeva', 'VISITOR');
+INSERT INTO USERS (USERID, LOGIN, PASSWORD, FIRSTNAME, LASTNAME, STATUS) VALUES (default, 'laurlaura', 'jansoNe56', 'Laura', 'Jansone', 'VISITOR');
+INSERT INTO USERS (USERID, LOGIN, PASSWORD, FIRSTNAME, LASTNAME, STATUS) VALUES (default, 'artursku', 'urm87s6', 'Arturs', 'Kurms', 'VISITOR');
