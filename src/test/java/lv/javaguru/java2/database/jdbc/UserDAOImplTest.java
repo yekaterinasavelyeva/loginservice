@@ -21,7 +21,7 @@ public class UserDAOImplTest extends DBUnitTestCase {
         return "dbscripts/UserDAOImplTest.xml";
     }
 
-    @Test
+   /* @Test
     public void testCreate() throws Exception {
         User user = createUser()
                 .withLogin("L")
@@ -64,5 +64,5 @@ public class UserDAOImplTest extends DBUnitTestCase {
         assertEquals(user.getLastName(), userDAO.getById(userId).get().getLastName());
         assertEquals(user.getPassword(), userDAO.getById(userId).get().getPassword());
     }
-
+*/
 }
