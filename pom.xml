@@ -184,6 +184,7 @@
                         <version>2.19.1</version>
                         <configuration>
                             <groups>lv.javaguru.java2.integration.IntegrationTest</groups>
+                            <useSystemClassLoader>false</useSystemClassLoader>
                         </configuration>
                         <executions>
                             <execution>
