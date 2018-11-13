@@ -1,9 +1,11 @@
-package lv.javaguru.java2.services.validators.rules.passwordinput;
+package lv.javaguru.java2.services.validators.rules.inputimpls;
 
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.services.validators.rules.DataInputRule;
 
-public class EmptyOrNullPasswordRule implements DataInputRule {
+import javax.inject.Named;
+
+public class EmptyOrNullInputRule implements DataInputRule {
 
     @Override
     public boolean satisfiesCondition(String input) {
@@ -11,8 +13,8 @@ public class EmptyOrNullPasswordRule implements DataInputRule {
     }
 
     @Override
-    public void produceResult(String input) {
-        throw new IllegalArgumentException("Password must not be empty!");
+    public void produceResult(String input, String message) {
+        throw new IllegalArgumentException(message + " must not be empty!");
     }
 
     @Override
@@ -21,8 +23,8 @@ public class EmptyOrNullPasswordRule implements DataInputRule {
     }
 
     @Override
-    public void produceResult(Long userId, String input, UserDAO dao) {
-        throw new IllegalArgumentException("Password must not be empty!");
+    public void produceResult(Long userId, String input, UserDAO dao, String message) {
+        throw new IllegalArgumentException(message + " must not be empty!");
     }
 
     private boolean isBlank(String str) {

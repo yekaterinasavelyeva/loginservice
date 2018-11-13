@@ -38,11 +38,10 @@ public class EditUserServiceImplTest {
         User user = Mockito.mock(User.class);
         when(userDAO.getById(EXAMPLE_LONG)).thenReturn(Optional.of(user));
         InOrder inOrder = Mockito.inOrder(user, validator, userDAO);
-        service.edit(EXAMPLE_LONG, EXAMPLE_STRING, EXAMPLE_STRING, EXAMPLE_STRING, EXAMPLE_STATE);
+        service.edit(EXAMPLE_LONG, EXAMPLE_STRING, EXAMPLE_STRING, EXAMPLE_STATE);
 
         inOrder.verify(userDAO).getById(EXAMPLE_LONG);
-        inOrder.verify(validator).validate(EXAMPLE_LONG, EXAMPLE_STRING, EXAMPLE_STRING, EXAMPLE_STRING, EXAMPLE_STATE);
-        inOrder.verify(user).setPassword(EXAMPLE_STRING);
+        inOrder.verify(validator).validate(EXAMPLE_STRING, EXAMPLE_STRING, EXAMPLE_STATE);
         inOrder.verify(userDAO).update(user);
     }
 

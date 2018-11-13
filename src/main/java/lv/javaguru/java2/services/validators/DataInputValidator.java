@@ -7,7 +7,7 @@ package lv.javaguru.java2.services.validators;
 
 public interface DataInputValidator {
 
-    void validateInput(String input);
+    void validateInput(String input, String message);
 
-    void validateData(Long userId, String input);
+    void validateData(Long userId, String input, String message);
 }

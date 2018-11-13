@@ -11,10 +11,16 @@ public interface UserDAO {
 
     Optional<User> getById(Long id);
 
+    Optional<User> getByLogin(String login);
+
     void delete(Long id);
 
     void update(User user);
 
     List<User> getAll();
+
+    void updatePassword(Long id, String password);
+
+    List<String> getAllPasswords(Long id);
 
 }

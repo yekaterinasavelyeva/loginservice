@@ -4,6 +4,6 @@ import lv.javaguru.java2.domain.UserState;
 
 public interface EditUserService {
 
-    void edit(Long userId, String password, String firstName, String lastname, UserState state);
+    void edit(Long userId, String firstName, String lastname, UserState state);
 
 }

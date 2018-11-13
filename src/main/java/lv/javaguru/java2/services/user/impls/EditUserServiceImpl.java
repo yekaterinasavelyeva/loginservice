@@ -7,12 +7,8 @@ import lv.javaguru.java2.domain.UserState;
 import lv.javaguru.java2.services.user.EditUserService;
 import lv.javaguru.java2.services.validators.UserEditValidator;
 import lv.javaguru.java2.services.validators.impls.UserEditValidatorImpl;
-import lv.javaguru.java2.services.validators.rules.passwordinput.EmptyOrNullPasswordRule;
-import lv.javaguru.java2.services.validators.rules.passwordinput.LetterAndNumberPasswordRule;
-import lv.javaguru.java2.services.validators.rules.passwordinput.MinLengthPasswordRule;
-import lv.javaguru.java2.services.validators.UserPropertiesValidator;
-import lv.javaguru.java2.services.validators.impls.UserPropertiesValidatorImpl;
 
+import javax.inject.Named;
 import java.util.Optional;
 
 public class EditUserServiceImpl implements EditUserService {
@@ -22,17 +18,17 @@ public class EditUserServiceImpl implements EditUserService {
             new UserEditValidatorImpl();
 
     @Override
-    public void edit(Long userId, String password, String firstName, String lastname, UserState state) {
+    public void edit(Long userId, String firstName, String lastname, UserState state) {
         Optional<User> userOpt = userDAO.getById(userId);
         if (!userOpt.isPresent()) {
             throw new IllegalArgumentException("User not found by id = " + userId);
         }
 
         User user = userOpt.get();
-        userEditValidator.validate(userId, password, firstName, lastname, state);
-
-        user.setPassword(password);
-
+        userEditValidator.validate(firstName, lastname, state);
+        user.setFirstName(firstName);
+        user.setLastName(lastname);
+        user.setState(state);
         userDAO.update(user);
     }
 

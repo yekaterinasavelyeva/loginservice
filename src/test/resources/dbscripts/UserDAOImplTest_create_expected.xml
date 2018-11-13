@@ -1,5 +1,0 @@
-<dataset>
-    <USERS Login="loginl" Password="password1" FirstName="Bob" LastName="Doe" Status="ADMIN"/>
-    <USERS Login="logink" Password="password2" FirstName="Alice" LastName="Foo" Status="VISITOR"/>
-    <USERS Login="L" Password="P" FirstName="F" LastName="LA" Status="VISITOR"/>
-</dataset>

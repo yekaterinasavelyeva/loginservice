@@ -1,9 +1,10 @@
-package lv.javaguru.java2.services.validators.rules.passwordinput;
+package lv.javaguru.java2.services.validators.rules.inputimpls;
 
 import lv.javaguru.java2.database.UserDAO;
-import lv.javaguru.java2.database.jdbc.UserDAOImpl;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.services.validators.rules.DataInputRule;
+
+import javax.inject.Named;
 
 /**
  * Created by Yekaterina Savelyeva
@@ -14,15 +15,17 @@ public class LastPasswordRule  implements DataInputRule {
     @Override
     public boolean satisfiesCondition(Long userId, String password, UserDAO dao) {
         User user = dao.getById(userId).get();
-        if(password.equals(user.getPassword())){
+        if(password.equals(user.getPassword())||
+                password.equals(user.getLastPassword())||
+                password.equals(user.getVeryLastPassword())){
             return true;
         }
         return false;
     }
 
     @Override
-    public void produceResult(Long userId, String password, UserDAO dao) {
-        throw new IllegalArgumentException("Password matches previous one!");
+    public void produceResult(Long userId, String password, UserDAO dao, String message) {
+        throw new IllegalArgumentException("Password matches one of three previous!");
     }
 
     @Override
@@ -31,7 +34,7 @@ public class LastPasswordRule  implements DataInputRule {
     }
 
     @Override
-    public void produceResult(String password) {
-        throw new IllegalArgumentException("Password matches previous one!");
+    public void produceResult(String password, String message) {
+        throw new IllegalArgumentException("Password matches one of three previous!");
     }
 }

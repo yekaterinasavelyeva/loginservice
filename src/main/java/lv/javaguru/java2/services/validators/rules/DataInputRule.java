@@ -9,7 +9,7 @@ public interface DataInputRule {
 
     boolean satisfiesCondition(Long userId, String input, UserDAO dao);
 
-    void produceResult(String input);
+    void produceResult(String input, String message);
 
-    void produceResult(Long userId, String input, UserDAO dao);
+    void produceResult(Long userId, String input, UserDAO dao, String message);
 }
