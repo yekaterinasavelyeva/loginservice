@@ -5,15 +5,13 @@ import lv.javaguru.java2.database.jdbc.UserDAOImpl;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.domain.UserState;
 import lv.javaguru.java2.services.user.EditUserService;
-import lv.javaguru.java2.services.validators.UserEditValidator;
-import lv.javaguru.java2.services.validators.impls.UserEditValidatorImpl;
 
 import javax.inject.Named;
 import java.util.Optional;
 
-public class EditUserServiceImpl implements EditUserService {
+public class EditUserServiceImpl  {
 
-    private UserDAO userDAO = new UserDAOImpl();
+    /*private UserDAO userDAO = new UserDAOImpl();
     private UserEditValidator userEditValidator =
             new UserEditValidatorImpl();
 
@@ -30,6 +28,6 @@ public class EditUserServiceImpl implements EditUserService {
         user.setLastName(lastname);
         user.setState(state);
         userDAO.update(user);
-    }
+    }*/
 
 }

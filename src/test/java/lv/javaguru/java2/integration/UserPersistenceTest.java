@@ -15,13 +15,18 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
-
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.*;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Handler;
+import java.util.logging.LogManager;
 
 import static lv.javaguru.java2.domain.UserBuilder.createUser;
 
@@ -46,15 +51,31 @@ public class UserPersistenceTest {
     @Inject
     UserTransaction utx;
 
+
+    private static Properties create() {
+        Properties props = new Properties();
+        props.setProperty("java.util.logging.ConsoleHandler.level",
+                "FINE");
+        return props;
+    }
+
+    private static void read(LogManager manager, Properties props) throws IOException {
+        final ByteArrayOutputStream out = new ByteArrayOutputStream(512);
+        props.store(out, "No comment");
+        manager.readConfiguration(new ByteArrayInputStream(out.toByteArray()));
+    }
+
     private static final User[] users_here = {createUser()
-            .withLogin("L")
-            .withPassword("P")
+            .withLogin("Login2")
+            .withPassword("Password1")
             .withFirstName("F")
             .withLastName("LA")
             .withState(UserState.VISITOR).build()};
 
     @Before
     public void preparePersistenceTest() throws Exception {
+        read(LogManager.getLogManager(), create());
+        Handler h = new ConsoleHandler();
         clearData();
         insertData();
         startTransaction();
@@ -78,8 +99,8 @@ public class UserPersistenceTest {
         em.joinTransaction();
         System.out.println("Inserting records...");
         User user = createUser()
-                .withLogin("L")
-                .withPassword("P")
+                .withLogin("Login2")
+                .withPassword("Password1")
                 .withFirstName("F")
                 .withLastName("LA")
                 .withState(UserState.VISITOR).build();

@@ -5,10 +5,9 @@ import lv.javaguru.java2.database.jdbc.UserDAOImpl;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.domain.UserState;
 import lv.javaguru.java2.services.user.UserFactory;
-import lv.javaguru.java2.services.validators.UserCreateValidator;
-import lv.javaguru.java2.services.validators.impls.UserCreateValidatorImpl;
+import lv.javaguru.java2.services.user.validators.UserCreateValidator;
 
-import javax.inject.Named;
+import javax.inject.Inject;
 
 import static lv.javaguru.java2.domain.UserBuilder.createUser;
 
@@ -20,8 +19,11 @@ import static lv.javaguru.java2.domain.UserBuilder.createUser;
 
 public class UserFactoryImpl implements UserFactory {
 
-    private UserCreateValidator propertiesValidator = new UserCreateValidatorImpl();
-    private UserDAO userDAO = new UserDAOImpl();
+    @Inject
+    private UserCreateValidator propertiesValidator;
+
+    @Inject
+    private UserDAO userDAO;
 
 
     @Override

@@ -1,6 +1,9 @@
 package lv.javaguru.java2.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
@@ -13,9 +16,18 @@ public class User {
     private Long userId;
 
     @Column(name = "login", unique = true, updatable = false)
+    @NotNull(message="Login cannot be empty!")
+    @Size(min = 6, message="Login is too short!")
+    @Pattern(regexp = "\\w+", message = "Unacceptable symbols detected in login!")
     private String login;
 
     @Column(table="passwords", name="password1")
+    @NotNull(message="Password cannot be empty!")
+    @Size(min = 6, message="Password is too short!")
+    @Pattern.List({
+            @Pattern( regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$",
+                    message = "Password must contain letters, capital letters and numbers!"),
+            @Pattern(regexp = "\\w+", message = "Unacceptable symbols detected in password!")})
     private String password;
 
     @Column(table="passwords", name="password2", nullable = true)
@@ -25,12 +37,18 @@ public class User {
     private String veryLastPassword;
 
     @Column(name = "firstname")
+    @NotNull(message="First Name cannot be empty!")
+    @Pattern(regexp = "\\w+", message = "Unacceptable symbols detected in First Name!")
     private String firstName;
 
     @Column(name = "lastname")
+    @NotNull(message="Last Name cannot be empty!")
+    @Pattern(regexp = "\\w+", message = "Unacceptable symbols detected in Last Name!")
     private String lastName;
 
+    @Column(name = "status")
     @Enumerated(EnumType.STRING)
+    @NotNull(message="User type cannot be empty!")
     private UserState state;
 
     @Override

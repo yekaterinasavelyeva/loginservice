@@ -2,10 +2,10 @@ package lv.javaguru.java2.database.jdbc;
 
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.User;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.validation.Validator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

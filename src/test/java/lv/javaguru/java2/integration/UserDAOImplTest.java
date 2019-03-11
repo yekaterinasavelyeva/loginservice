@@ -22,6 +22,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 
 import javax.inject.Inject;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -40,11 +41,11 @@ public class UserDAOImplTest {
     }
 
     @Inject
-    private UserDAO userDAO;
+    UserDAO userDAO;
 
     private static User user_here = createUser()
-            .withLogin("L")
-            .withPassword("P")
+            .withLogin("Login1")
+            .withPassword("Password1")
             .withFirstName("F")
             .withLastName("LA")
             .withState(UserState.VISITOR).build();
