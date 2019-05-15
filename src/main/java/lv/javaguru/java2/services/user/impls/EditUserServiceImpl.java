@@ -1,14 +1,5 @@
 package lv.javaguru.java2.services.user.impls;
 
-import lv.javaguru.java2.database.UserDAO;
-import lv.javaguru.java2.database.jdbc.UserDAOImpl;
-import lv.javaguru.java2.domain.User;
-import lv.javaguru.java2.domain.UserState;
-import lv.javaguru.java2.services.user.EditUserService;
-
-import javax.inject.Named;
-import java.util.Optional;
-
 public class EditUserServiceImpl  {
 
     /*private UserDAO userDAO = new UserDAOImpl();

@@ -1,20 +1,17 @@
 package lv.javaguru.java2.services.user.validators.impls;
 
-import lv.javaguru.java2.domain.UserState;
 import lv.javaguru.java2.services.user.validators.DataInputValidator;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
- * Created by user
+ * Created by user Yekaterina Savelyeva
  * on 01.03.2019
  */
 
 public class DataInputValidatorImplTest {
 
-   private DataInputValidator validator = new DataInputValidatorImpl();
+   //private DataInputValidator validator = new DataInputValidatorImplOld();
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();

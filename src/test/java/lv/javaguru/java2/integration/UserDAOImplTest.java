@@ -1,7 +1,10 @@
 package lv.javaguru.java2.integration;
 
+import lv.javaguru.java2.database.SessionDAO;
 import lv.javaguru.java2.database.UserDAO;
-import lv.javaguru.java2.database.jdbc.UserDAOImpl;
+import lv.javaguru.java2.database.impl.SessionDAOImpl;
+import lv.javaguru.java2.database.impl.UserDAOImpl;
+import lv.javaguru.java2.domain.Session;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.domain.UserBuilder;
 import lv.javaguru.java2.domain.UserState;
@@ -34,8 +37,10 @@ public class UserDAOImplTest {
     @Deployment
     public static Archive<?> createDeployment() {
         return ShrinkWrap.create(WebArchive.class, "test.war")
-                .addPackages(true, User.class.getPackage(), UserBuilder.class.getPackage(), UserDAO.class.getPackage(),
-                UserDAOImpl.class.getPackage())
+                .addPackages(true, User.class.getPackage(),
+                        UserBuilder.class.getPackage(), UserDAO.class.getPackage(),
+                        UserDAOImpl.class.getPackage(), Session.class.getPackage(),
+                        SessionDAO.class.getPackage(), SessionDAOImpl.class.getPackage())
                 .addAsResource("test-persistence.xml", "META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }

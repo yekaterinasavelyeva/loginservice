@@ -1,66 +1,46 @@
 package lv.javaguru.java2.services.user.validators.impls;
 
-import lv.javaguru.java2.domain.UserState;
 import lv.javaguru.java2.services.user.validators.DataInputValidator;
 
+import javax.annotation.Resource;
+import javax.inject.Named;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
+import java.util.Set;
+
 /**
- * Created by user
- * on 01.03.2019
+ * Created by user Yekaterina Savelyeva
+ * on 04.03.2019
  */
 
+@Named("input_validator")
 public class DataInputValidatorImpl implements DataInputValidator {
-    @Override
-    public void validateUserFirstNameInput(String firstName) {
-        firstName = firstName == null ? null : firstName.trim();
-        if (firstName == null || firstName.isEmpty()) {
-            throw new IllegalArgumentException("First Name cannot be empty!");
-        }
+
+
+    public Set<ConstraintViolation<Object>> validate(Object object, Validator validator) {
+       Set<ConstraintViolation<Object>> constraintViolations = validator
+                .validate(object);
+       return constraintViolations;
     }
 
-    @Override
-    public void validateUserLastNameInput(String lastName) {
-        lastName = lastName == null ? null : lastName.trim();
-        if (lastName == null || lastName.isEmpty()) {
-            throw new IllegalArgumentException("Last Name cannot be empty!");
+    public String printErrorMessages(Set<ConstraintViolation<Object>> constraintViolations){
+        String text = "";
+        for (ConstraintViolation<Object> cv : constraintViolations) {
+            text += String.format(
+                    "Warning! %s",
+                    cv.getMessage()) + "\n";
         }
+        return text;
     }
 
-    @Override
-    public void validateUserStateInput(UserState state) {
-        if (state == null) {
-            throw new IllegalArgumentException("User type cannot be empty!");
+    public String printErrorForSpecificField(Set<ConstraintViolation<Object>> constraintViolations, String field){
+        String text = "";
+        for (ConstraintViolation<Object> cv : constraintViolations) {
+            if(cv.getPropertyPath().toString().equals(field)){
+                text +=String.format("Warning! %s",
+                        cv.getMessage()) + "\n";
+            }
         }
-    }
-
-    @Override
-    public void validateUserLogin(String login) {
-        if (login == null || login.isEmpty()) {
-            throw new IllegalArgumentException("Login cannot be empty!");
-        }
-        if (!login.matches("\\w+")) {
-            throw new IllegalArgumentException("Unacceptable symbols detected in login!");
-        }
-        if (login.length() < 5) {
-            throw new IllegalArgumentException("Login is too short!");
-        }
-    }
-
-    @Override
-    public void validateUserPassword(String password) {
-        if (password == null || password.isEmpty()) {
-            throw new IllegalArgumentException("Password cannot be empty!");
-        }
-        if(!password.matches("\\w+")){
-            throw new IllegalArgumentException("Unacceptable symbols detected in password!");
-        }
-        if(password.matches("\\d+") || password.matches("[a-zA-Z]+")){
-            throw new IllegalArgumentException("Password must contain letters and numbers!");
-        }
-        if(password.length() < 5){
-            throw new IllegalArgumentException("Password is too short!");
-        }
-        if(!password.matches("^(?=.*[A-Z]).+$")){
-            throw new IllegalArgumentException("At least one capital letter is expected!");
-        }
+        return text;
     }
 }

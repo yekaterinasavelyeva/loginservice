@@ -4,11 +4,12 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "users")
 @SecondaryTable(name = "passwords", pkJoinColumns=@PrimaryKeyJoinColumn(name="id", referencedColumnName="userid"))
-public class User {
+public class User implements Serializable {
 
     @Id
     @Column(name = "userid")
@@ -123,4 +124,5 @@ public class User {
     public void setVeryLastPassword(String veryLastPassword) {
         this.veryLastPassword = veryLastPassword;
     }
+
 }

@@ -45,5 +45,45 @@
         <url-pattern>/jsp</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>RegistrationServlet</servlet-name>
+        <servlet-class>lv.javaguru.java2.servlet.RegistrationServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RegistrationServlet</servlet-name>
+        <url-pattern>/registration</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RegistrationApprove</servlet-name>
+        <servlet-class>lv.javaguru.java2.servlet.RegistrationApproveServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RegistrationApprove</servlet-name>
+        <url-pattern>/regapp</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Main</servlet-name>
+        <servlet-class>lv.javaguru.java2.servlet.MainServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Main</servlet-name>
+        <url-pattern>/main</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RegistrationSuccess</servlet-name>
+        <servlet-class>lv.javaguru.java2.servlet.RegistrationSuccessServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RegistrationSuccess</servlet-name>
+        <url-pattern>/approve</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>

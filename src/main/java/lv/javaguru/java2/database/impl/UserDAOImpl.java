@@ -1,11 +1,11 @@
-package lv.javaguru.java2.database.jdbc;
+package lv.javaguru.java2.database.impl;
 
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.User;
 import javax.ejb.Stateless;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.validation.Validator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +16,7 @@ import java.util.Optional;
  */
 
 @Stateless
+@Named
 public class UserDAOImpl implements UserDAO {
 
     @PersistenceContext
@@ -29,30 +30,30 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public Optional<User> getById(Long id) {
-        return em.createQuery("select u from User u where u.userId = :userId", User.class)
+        return em.createQuery("select u from User u where u.userId = :userId")
                 .setParameter("userId", id)
-                .getResultStream()
+                .getResultList().stream()
                 .findFirst();
     }
 
     @Override
     public Optional<User> getByLogin(String login) {
-        return em.createQuery("select u from User u where u.login = :login", User.class)
+        return em.createQuery("select u from User u where u.login = :login")
                 .setParameter("login", login)
-                .getResultStream()
+                .getResultList().stream()
                 .findFirst();
     }
 
     @Override
     public void delete(Long id) {
-        em.createQuery("delete from User u where u.userId = :userId", User.class)
+        em.createQuery("delete from User u where u.userId = :userId")
                 .setParameter("userId", id).executeUpdate();
     }
 
     @Override
     public void update(User user) {
         em.createQuery("update User u set u.firstName = :firstName, u.lastName = :lastName, u.state = :state "
-                + "where u.userId = :userId", User.class)
+                + "where u.userId = :userId")
                 .setParameter("userId", user.getUserId())
                 .setParameter("firstName", user.getFirstName())
                 .setParameter("lastName", user.getLastName())
@@ -61,7 +62,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public List<User> getAll() {
-        return em.createQuery("select u from User u", User.class)
+        return em.createQuery("select u from User u")
                 .getResultList();
     }
 
@@ -69,7 +70,7 @@ public class UserDAOImpl implements UserDAO {
     public void updatePassword(Long userId, String newPassword){
 
         em.createQuery("update User u set u.veryLastPassword = u.lastPassword, u.lastPassword = u.password," +
-                " u.password = :password " + "where u.userId = :userId", User.class)
+                " u.password = :password " + "where u.userId = :userId")
                 .setParameter("userId", userId)
                 .setParameter("password", newPassword).executeUpdate();
     }

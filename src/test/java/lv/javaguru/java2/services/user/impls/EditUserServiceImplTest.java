@@ -1,21 +1,6 @@
 package lv.javaguru.java2.services.user.impls;
 
-import lv.javaguru.java2.database.UserDAO;
-import lv.javaguru.java2.database.jdbc.UserDAOImpl;
-import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.domain.UserState;
-import lv.javaguru.java2.services.user.EditUserService;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InOrder;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.runners.MockitoJUnitRunner;
-
-import java.util.Optional;
-
-import static org.mockito.Mockito.when;
 
 //@RunWith(MockitoJUnitRunner.class)
 public class EditUserServiceImplTest {
