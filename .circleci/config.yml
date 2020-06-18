@@ -43,7 +43,9 @@ jobs:
 
       # run tests!
       - run: mvn test integration-test -Pintegration-test
-      -run: mvn verify sonar:sonar
+      - run:
+        name: Analyze on SonarCloud
+        command: mvn verify sonar:sonar
 
 workflows:
   main:
